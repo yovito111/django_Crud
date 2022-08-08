@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    Productos 
+{% endblock %}
+
+{% block contenido %}
+    <div class="card">
+        <div class="card-header">
+            <a name="" id="" class="btn btn-success" href="{% url 'crear' %}" role="button">Agregar nuevo producto</a>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Productos</h4>
+           
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Imagen</th>
+                        <th>Categoría</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for producto in productos%}
+                    <tr>
+                        <th>{{ producto.id}}</th>
+                        <td>
+                            <img src="{{ producto.imagen.url}}" height="50">   
+                        </td>
+                        <th>{{ producto.categoría}}</th>
+                        <td>{{ producto.codigo}}</td>
+                        <td>{{ producto.nombre}}</td>
+                        <td>{{ producto.descripcion}}</td>
+                        <td> $ {{producto.precio}}</td>
+                        
+                        <td> 
+                            <a name="" id="" class="btn btn-info" href="{% url 'editar' producto.id %}" role="button">Editar</a>
+                            |
+                            <a name="" id="" class="btn btn-danger" href="{% url 'borrar' producto.id %}" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    
+    </div>
+{% endblock %}
